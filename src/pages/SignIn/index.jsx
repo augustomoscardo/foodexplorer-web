@@ -1,5 +1,21 @@
+import { Input } from '../../components/Input'
+import { Container, Logo, Form } from './styles'
+
 export function SignIn() {
   return (
-    <h1>Sign In</h1>
+    <Container>
+      <Logo />
+      <Form>
+        <h1>Faça login</h1>
+
+        <Input
+          textLabel='E-mail'
+          placeholder=''
+          type=''
+          onChange={ }
+        />
+        <Input textLabel='Senha' />
+      </Form>
+    </Container>
   )
 }

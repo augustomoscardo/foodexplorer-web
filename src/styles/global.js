@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { deviceBreakPoints } from './deviceBreakPoints'
 
 export default createGlobalStyle`
   * {
@@ -7,8 +8,27 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :root {
+    font-size: 62.5%;
+
+    
+  }
+
   body {
-    /* background-color: ; */
+    background-color: ${({ theme }) => theme.colors.darkBlue_400};
+    color: ${({ theme }) => theme.colors.gray_100};
+
+    /* height: 100dvh; */
+  }
+
+  body, input, button, textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    outline: none;
+
+    @media (max-width: ${deviceBreakPoints.md}) {
+      font-size: 12px;
+    }
   }
 
   a {
