@@ -7,11 +7,15 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
 
-  display: flex;
+  /* display: flex;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  grid-gap: 30rem;
 
-  padding: 140px 150px;
+  padding: 10rem 15rem;
 `
 
 export const Logo = styled.div`
@@ -40,11 +44,19 @@ export const Form = styled.form`
   justify-content: center;
   gap: 3.2rem;
 
-  padding: 6.4rem;
+  padding: 4.8rem;
+  border-radius: 1.6rem;
 
   > h2 {
+    align-self: center;
     font-size: 3.2rem;
     font-weight: 500;
     line-height: 1.4;
+  }
+
+  > a {
+    align-self: center;
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.gray_100};
   }
 `

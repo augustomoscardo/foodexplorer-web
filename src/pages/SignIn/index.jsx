@@ -1,16 +1,26 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
-import { Container, Logo, Form } from './styles'
 
 import logoExplorer from '../../assets/logo.svg'
+
+import { Container, Logo, Form } from './styles'
+import { useAuth } from '../../hooks/auth'
 
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  async function handleSignIn() {
-    console.log(email, password);
+  const { signIn } = useAuth()
+
+  async function handleSignIn(e) {
+    e.preventDefault
+
+    if (!email || !password) return alert('Informe o e-mail e senha.')
+
+    await signIn({ email, password })
   }
 
   return (
@@ -24,18 +34,22 @@ export function SignIn() {
 
         <Input
           textLabel='E-mail'
-          placeholder=''
+          placeholder='Exemplo: exemplo@exemplo.com.br'
           type='text'
           onChange={e => setEmail(e.target.value)}
         />
         <Input
           textLabel='Senha'
-          placeholder=''
-          type=''
+          placeholder='No mínimo 6 caracteres'
+          type='password'
           onChange={e => setPassword(e.target.value)}
         />
 
-        <Button onClick={handleSignIn} />
+        <Button type='button' text='Entrar' onClick={handleSignIn} />
+
+        <Link to='/register'>
+          Criar conta
+        </Link>
       </Form>
     </Container>
   )

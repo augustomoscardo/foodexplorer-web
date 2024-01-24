@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import { api } from '../services/api'
+import { useEffect } from 'react'
 
 const AuthContext = createContext({})
 
@@ -8,7 +9,7 @@ export function AuthProvider({ children }) {
 
   async function signIn({ email, password }) {
     try {
-      const response = await api.post('/session', { email, password }, { withCredentials: true })
+      const response = await api.post('/sessions', { email, password }, { withCredentials: true })
 
       const { user } = response.data
 
@@ -27,6 +28,16 @@ export function AuthProvider({ children }) {
   async function signOut() {
     localStorage.removeItem('@foodexplorer:user')
   }
+
+  useEffect(() => {
+    const user = localStorage.getItem('@foodexplorer:user')
+
+    if (user) {
+      setData({
+        user: JSON.parse(user)
+      })
+    }
+  }, [])
 
   return (
     <AuthContext.Provider value={{
