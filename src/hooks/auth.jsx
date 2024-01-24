@@ -6,6 +6,7 @@ const AuthContext = createContext({})
 
 export function AuthProvider({ children }) {
   const [data, setData] = useState({})
+  console.log(data);
 
   async function signIn({ email, password }) {
     try {
@@ -15,7 +16,7 @@ export function AuthProvider({ children }) {
 
       localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
 
-      setData(user)
+      setData({ user })
     } catch (err) {
       if (err.response) {
         alert(err.response.message)
