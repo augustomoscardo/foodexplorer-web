@@ -6,7 +6,6 @@ const AuthContext = createContext({})
 
 export function AuthProvider({ children }) {
   const [data, setData] = useState({})
-  console.log(data);
 
   async function signIn({ email, password }) {
     try {
@@ -28,6 +27,8 @@ export function AuthProvider({ children }) {
 
   async function signOut() {
     localStorage.removeItem('@foodexplorer:user')
+
+    setData({})
   }
 
   useEffect(() => {

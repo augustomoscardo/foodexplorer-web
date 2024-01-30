@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
-
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.6rem !important;
+  align-items: flex-start;
 
   > label {
     font-family: 'Roboto', sans-serif;
@@ -13,13 +12,17 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.colors.gray_400};
   }
 
-  > input {
-    background-color: ${({ theme }) => theme.colors.darkBlue_800};
+  > textarea {
+    width: 100%;
+    height: 17.2rem;
+
+    background-color: ${({ theme }) => theme.colors.darkBlue_900};
     color: ${({ theme }) => theme.colors.gray_100};
 
-    padding: 1.2rem 1.4rem;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
+    resize: none;
+    padding: 1.4rem;
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray_500};
