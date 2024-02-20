@@ -1,10 +1,10 @@
 import { Container } from './styles'
 
-export function Input({ textLabel, ...rest }) {
+export function Input({ textLabel, inputId, ...rest }) {
   return (
     <Container>
-      <label>{textLabel}</label>
-      <input type="text" {...rest} />
+      <label htmlFor={inputId}>{textLabel}</label>
+      <input id={inputId} {...rest} />
     </Container>
   )
 }

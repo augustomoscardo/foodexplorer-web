@@ -4,7 +4,7 @@ export function Select({ textLabel, ...rest }) {
   return (
     <Container>
       <label>{textLabel}</label>
-      <select name="categoria" id="">
+      <select name="categoria" {...rest}>
         <option value="">Selecione uma categoria</option>
         <option value="refeicao">Refeição</option>
         <option value="sobremesa">Sobremesa</option>

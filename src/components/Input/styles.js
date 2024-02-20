@@ -16,6 +16,8 @@ export const Container = styled.div`
   > input {
     background-color: ${({ theme }) => theme.colors.darkBlue_800};
     color: ${({ theme }) => theme.colors.gray_100};
+    
+    height: 4.8rem;
 
     padding: 1.2rem 1.4rem;
     border: none;
@@ -28,5 +30,12 @@ export const Container = styled.div`
     &:focus {
       border: 1px solid ${({ theme }) => theme.colors.gray_100};
     }
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+    -moz-appearance: textfield;
   }
 `
