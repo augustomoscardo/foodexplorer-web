@@ -28,5 +28,8 @@ export default {
     darkBlue_800: '#0D1D25',
     darkBlue_900: '#0D1D25',
     darkBlue_1000: '#192227',
+
+    gradient_100: '#000A0F',
+    gradient_200: '#091E26'
   }
 }
