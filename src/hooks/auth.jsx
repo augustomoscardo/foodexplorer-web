@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
 
   async function signIn({ email, password }) {
     try {
-      const response = await api.post('/sessions', { email, password }, { withCredentials: true })
+      const response = await api.post('sessions', { email, password }, { withCredentials: true })
 
       const { user } = response.data
 
@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
       setData({ user })
     } catch (err) {
       if (err.response) {
-        alert(err.response.message)
+        alert(err.response.data.message)
       } else {
         alert('Não foi possível fazer o login.')
       }
