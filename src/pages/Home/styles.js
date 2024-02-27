@@ -14,4 +14,13 @@ export const Menu = styled.div`
   flex-direction: column;
   gap: 4.8rem;
 
+
+  /* SWIPER */
+  .swiper-button-next,
+  .swiper-button-prev {
+    border-radius: 100%;
+    color: ${({ theme }) => theme.colors.gray_100};
+  }
 `
+
+
