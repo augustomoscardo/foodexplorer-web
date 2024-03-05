@@ -16,7 +16,7 @@ export const Container = styled.div`
 
   position: relative;
 
-  margin-top: 2.4rem;
+  
 
   > button {
     position: absolute;
@@ -47,13 +47,19 @@ export const Container = styled.div`
     }
   }
 
-  > h3 {
+  > a {
     text-align: center;
+    color: ${({ theme }) => theme.colors.gray_300};
+    text-decoration: none;
     font-size: 2.4rem;
     line-height: 1.4;
     font-weight: bold;
 
     padding-inline: 2.4rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   > p {

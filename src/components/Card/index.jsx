@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/auth'
 import { api } from '../../services/api'
 import { Container } from './styles'
 import { PencilSimple } from '@phosphor-icons/react'
+import { Link } from 'react-router-dom'
 
 export function Card({ dish }) {
   const { user } = useAuth()
@@ -11,7 +12,7 @@ export function Card({ dish }) {
   const imageURL = `${api.defaults.baseURL}/files/${dish.avatar}`
 
   function handleDishPage() {
-    navigate(`/dishes/${dish.id}`)
+    navigate(`/edit/${dish.id}`)
   }
 
 
@@ -21,7 +22,7 @@ export function Card({ dish }) {
         <PencilSimple size={24} />
       </button>
       <img src={imageURL} alt={`Imagem do prato ${dish.title}`} />
-      <h3>{dish.title}</h3>
+      <Link to={`/dish/${dish.id}`}>{dish.title}</Link>
       <p>{dish.description}</p>
       <span>{new Intl.NumberFormat('pt-BR', {
         style: 'currency',
