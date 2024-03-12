@@ -21,14 +21,14 @@ export function EditDish() {
   // const { user } = useAuth()
 
   const [dish, setDish] = useState({})
-  const [dishName, setDishName] = useState(dish.title)
-  const [category, setCategory] = useState(dish.category)
+  const [dishName, setDishName] = useState('')
+  const [category, setCategory] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState('')
-  const [price, setPrice] = useState(dish.price)
-  const [description, setDescription] = useState(dish.description)
+  const [price, setPrice] = useState(0)
+  const [description, setDescription] = useState('')
 
-  const [dishFileImage, setDishFileImage] = useState(dish.avatar)
+  const [dishFileImage, setDishFileImage] = useState(null)
   const avatarURL = dishFileImage ? `${api.defaults.baseURL}/files/${dishFileImage}` : ''
   const [dishImage, setDishImage] = useState(avatarURL)
 
@@ -47,7 +47,6 @@ export function EditDish() {
     setIngredients(state => [...state, newIngredient])
     setNewIngredient('')
   }
-  console.log(ingredients);
 
   function handleRemoveIngredient(ingredientToDelete) {
     const filteredIngredients = ingredients.filter(ingredient => ingredient != ingredientToDelete)
@@ -94,6 +93,11 @@ export function EditDish() {
     navigate(-1)
   }
 
+  function handleDeleteImg() {
+    setDishFileImage('')
+    setDishImage('')
+  }
+
   useEffect(() => {
     async function getDish() {
       try {
@@ -103,7 +107,15 @@ export function EditDish() {
 
         const { dish } = response.data
         setDish(dish)
-        setIngredients(response.data.dish.ingredients)
+        setDishName(dish.title)
+        setCategory(dish.category)
+        setIngredients(dish.ingredients.map(ingredient => ingredient.name))
+        setPrice(dish.price)
+        setDescription(dish.description)
+
+        setDishFileImage(dish.avatar)
+        const avatarURL = dishFileImage ? `${api.defaults.baseURL}/files/${dishFileImage}` : ''
+        setDishImage(avatarURL)
       } catch (err) {
         if (err.response) {
           alert(err.response.data.message)
@@ -125,7 +137,7 @@ export function EditDish() {
           voltar
         </button>
 
-        <h1>Adicionar prato</h1>
+        <h1>Editar prato</h1>
 
         {Object.entries(dish).length && (
           <Form>
@@ -144,22 +156,22 @@ export function EditDish() {
                 type='text'
                 placeholder='Ex.: Salada Ceasar'
                 onChange={e => setDishName(e.target.value)}
-                value={dish.title}
+                value={dishName}
               />
-              <Select textLabel='Categoria' onChange={(e) => setCategory(e.target.value)} value={dish.category} />
+              <Select textLabel='Categoria' onChange={(e) => setCategory(e.target.value)} value={category} />
             </div>
 
             {dishImage && <div className="imagePreview">
               <img src={dishImage} />
-              <button type="button"><X /></button>
+              <button type="button" onClick={handleDeleteImg}><X /></button>
             </div>}
 
             <div className="ingredientsAndPrice">
               <Ingredients textLabel='Ingredientes'>
-                {dish?.ingredients.map((ingredient, index) => (
+                {ingredients.map((ingredient, index) => (
                   <IngredientItem
                     key={String(index)}
-                    value={ingredient.name}
+                    value={ingredient}
                     onClick={() => handleRemoveIngredient(ingredient)}
                   />
                 ))}
@@ -178,7 +190,7 @@ export function EditDish() {
                 type='number'
                 placeholder='R$ 00,00'
                 onChange={(e) => setPrice(e.target.value)}
-                value={dish.price}
+                value={price}
               />
             </div>
 
@@ -186,7 +198,7 @@ export function EditDish() {
               textLabel='Descrição'
               placeholder='Fale brevemente sobre o prato, seus ingredientes e composição'
               onChange={(e) => setDescription(e.target.value)}
-              defaultValue={dish.description}
+              defaultValue={description}
             />
 
             <Button text='Salvar alterações' onClick={handleCreateDish} />

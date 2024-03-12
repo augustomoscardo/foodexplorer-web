@@ -98,6 +98,8 @@ export const Form = styled.form`
 
   .imagePreview {
     position: relative;
+    width: 15rem;
+    height: 15rem;
 
     img {
       width: 10rem;
@@ -113,9 +115,10 @@ export const Form = styled.form`
       background: none;
       border: none;
 
-      left: 8rem;
+      /* left: 8rem; */
+      right: 4rem;
 
-      color: ${({ theme }) => theme.colors.gray_800};
+      color: ${({ theme }) => theme.colors.gray_300};
     }
   }
   

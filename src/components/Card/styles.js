@@ -76,3 +76,40 @@ export const Container = styled.div`
     line-height: 1.6;
   }
 `
+
+export const AddToCartContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+
+    > button {
+      background: none;
+      color: ${({ theme }) => theme.colors.gray_100};
+      border: none;
+    }
+
+    > span {
+      color: ${({ theme }) => theme.colors.gray_100};
+      font-size: 2rem;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+
+  > button {
+    color: ${({ theme }) => theme.colors.gray_100};
+    background-color: ${({ theme }) => theme.colors.red_100};
+    border: none;
+    border-radius: 0.5rem;
+
+    padding: 1.2rem 2.4rem;
+
+    font-size: 1.4rem;
+    line-height: 2.4;
+  }
+
+`
