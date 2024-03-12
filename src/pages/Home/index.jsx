@@ -29,6 +29,7 @@ export function Home() {
     } catch (err) {
       if (err.response) {
         alert(err.response.data.message)
+        localStorage.removeItem('@foodexplorer:user')
       } else {
         alert('Não foi possível encontrar os pratos.')
       }
@@ -44,8 +45,6 @@ export function Home() {
   useEffect(() => {
     getDishes()
   }, [])
-
-  console.log(mealsEdge);
 
   const mealDishes = dishes.filter(dish => dish.category === 'refeicao')
   const dessertDishes = dishes.filter(dish => dish.category === 'sobremesa')
